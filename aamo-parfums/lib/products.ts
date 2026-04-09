@@ -42,7 +42,7 @@ export const products: Product[] = [
       heart: "Rose, White Flowers, Heliotrope Flower",
       base: "Vanilla Cream, Edible Notes, Powdery Notes, Patchouli, Tonka Bean"
     },
-    images: ["/images/PNG/glace-amor.jpg", "/images/glace-amor-2.jpg"]
+    images: ["/images/PNG/glace-amor.png", "/images/glace-amor-2.jpg"]
   },
   // Add Cherrynity, Unseen, Luminara, Rosvéré, Noctéra following this exact pattern...
 ];
