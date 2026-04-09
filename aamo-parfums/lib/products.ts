@@ -44,7 +44,19 @@ export const products: Product[] = [
     },
     images: ["/images/PNG/glace-amor.png", "/images/glace-amor-2.jpg"]
   },
-  // Add Cherrynity, Unseen, Luminara, Rosvéré, Noctéra following this exact pattern...
+  {
+    id: "cherrynity",
+    name: "CHERRYNITY",
+    release: "2024"
+    olfactive: "Woody, Amber, Fruity, Spicy",
+    description: "CHERRYNITY captures the warmth of an intimate evening with your loved one. It begins with vibrant cherry and mandarin, spiced with saffron and ginger. The heart reveals luxurious leather and osmanthus, softened by apricot and nutmeg. Finally, the deep notes of smoked wood, amber, and vanilla wrap you in a comforting embrace. CHERRYNITY is perfect for creating unforgettable moments of closeness and love.",
+    notes: {
+      Top: "Cherry, Saffron, Mandarin, Hawthorn, Ginger, Davana",
+      heart: "Leather, Olive, Osmanthus, Apricot, Nutmeg, Iris",
+      base: "Smoked Wood, Nagarmotha, Incense, Amber, Vanilla, Oak Moss"
+    },
+    images: ["/images/PNG/cherrynity.png"]
+  },// Add Cherrynity, Unseen, Luminara, Rosvéré, Noctéra following this exact pattern...
 ];
 
 export function getProductById(id: string) {
