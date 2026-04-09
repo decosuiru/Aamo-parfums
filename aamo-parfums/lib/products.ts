@@ -28,7 +28,7 @@ export const products: Product[] = [
       heart: "Juniper Bay, Ginger, Nutmeg, Geranium",
       base: "Patchouli, Vetiver, Cedarwood, Moss"
     },
-    images: ["/images/PNG/emit-light.png", "/images/PNG/emit-light.png"]
+    images: ["/images/PNG/emit-light.png", "/images/emit-light-2.jpg"]
   },
   {
     id: "glace-amor",
