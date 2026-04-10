@@ -1,12 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Menu, MapPin, Mail } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Links for the overlay menu
   const menuLinks = [
@@ -19,32 +30,95 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top Navbar */}
-      <nav className="fixed top-0 w-full z-50 flex justify-between items-center p-6 bg-transparent mix-blend-difference text-white">
-        <button 
-          onClick={() => setIsOpen(true)} 
-          className="text-sm tracking-widest hover:opacity-70 transition-opacity"
-        >
-          MENU
-        </button>
-
-        <Link href="/" className="text-3xl font-serif tracking-widest">
-          AAMO
+      {/* Desktop: Top Navbar with logo, centered HOME, and icons on the right */}
+      <nav className={`hidden md:flex fixed top-0 w-full z-50 justify-between items-center p-6 transition-colors duration-300 ease-out ${isScrolled ? "bg-white text-black shadow-black/10 shadow-md" : "bg-transparent text-white"}`}>
+        <Link href="/" className="flex items-center">
+          <picture>
+            {!isScrolled && (
+              <source srcSet="/images/PNG/Logo-2-(Putih).png" media="(prefers-color-scheme: dark)" />
+            )}
+            <img
+              src="/images/PNG/Logo-2.png"
+              alt="AAMO logo"
+              className="h-8 w-auto object-contain"
+            />
+          </picture>
         </Link>
 
-        {/* Empty div to balance the flexbox (keeps logo centered) */}
-        <div className="w-12"></div> 
+        <div className="flex items-center gap-10">
+          <Link 
+            href="/fragrances"
+            className="text-sm tracking-widest hover:opacity-70 transition-opacity"
+          >
+            FRAGRANCES
+          </Link>
+          <Link 
+            href="/"
+            className="text-sm tracking-widest hover:opacity-70 transition-opacity"
+          >
+            HOME
+          </Link>
+          <Link 
+            href="/about"
+            className="text-sm tracking-widest hover:opacity-70 transition-opacity"
+          >
+            ABOUT US
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-6">
+          <Link 
+            href="/stores"
+            className="hover:opacity-70 transition-opacity"
+            title="Where to find us"
+          >
+            <MapPin size={20} strokeWidth={1} />
+          </Link>
+          <Link 
+            href="/contact"
+            className="hover:opacity-70 transition-opacity"
+            title="Contact us"
+          >
+            <Mail size={20} strokeWidth={1} />
+          </Link>
+        </div>
       </nav>
 
-      {/* Fullscreen Menu Overlay using Framer Motion */}
+      {/* Mobile: Top Bar with Menu Icon (hidden on desktop) */}
+      <nav className={`md:hidden fixed top-0 w-full z-50 flex justify-between items-center p-6 transition-colors duration-300 ease-out ${isScrolled ? "bg-white text-black shadow-black/10 shadow-md" : "bg-transparent text-white"}`}>
+        <button 
+          onClick={() => setIsOpen(true)} 
+          className={`${isScrolled ? "text-black" : "text-white"} hover:opacity-70 transition-opacity`}
+        >
+          <Menu size={28} strokeWidth={1} />
+        </button>
+
+        <Link href="/" className="flex items-center">
+          <picture>
+            {!isScrolled && (
+              <source srcSet="/images/PNG/Logo-2-(Putih).png" media="(prefers-color-scheme: dark)" />
+            )}
+            <img
+              src="/images/PNG/Logo-2.png"
+              alt="AAMO logo"
+              className="h-6 w-auto object-contain"
+            />
+          </picture>
+        </Link>
+
+        {/* Empty div to balance the flexbox */}
+        <div className="w-8"></div> 
+      </nav>
+
+      {/* Desktop: Fullscreen Menu Overlay (slides from top) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ y: "-100%" }} // Starts hidden above screen
-            animate={{ y: 0 }}       // Slides down
-            exit={{ y: "-100%" }}    // Slides back up on close
-            transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }} // Luxury easing curve
-            className="fixed inset-0 z-[60] bg-black text-white flex flex-col justify-center items-center"
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+            className="hidden md:flex fixed inset-0 z-[60] bg-black text-white flex-col justify-center items-center"
           >
             <button 
               onClick={() => setIsOpen(false)}
@@ -57,14 +131,67 @@ export default function Navbar() {
               {menuLinks.map((link) => (
                 <motion.li 
                   key={link.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
+                  initial={{ y: -20 }}
+                  animate={{ y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
                 >
                   <Link 
                     href={link.path} 
                     onClick={() => setIsOpen(false)}
                     className="text-2xl md:text-4xl font-light tracking-[0.2em] hover:text-gray-400 transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile: Side Menu Overlay (slides from left) */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+            className="md:hidden fixed inset-0 z-[60] bg-black text-white flex flex-col"
+          >
+            <div className="flex justify-between items-center p-6 border-b border-gray-700">
+              <Link href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
+              <picture>
+                {!isScrolled && (
+                  <source srcSet="/images/PNG/Logo-2-(Putih).png" media="(prefers-color-scheme: dark)" />
+                )}
+                <img
+                  src="/images/PNG/Logo-2.png"
+                  alt="AAMO logo"
+                  className="h-6 w-auto object-contain"
+                />
+              </picture>
+            </Link>
+            <button 
+              onClick={() => setIsOpen(false)}
+              className="text-white hover:opacity-70 transition-opacity"
+            >
+              <X size={28} strokeWidth={1} />
+            </button>
+            </div>
+
+            <ul className="flex flex-col space-y-6 p-6">
+              {menuLinks.map((link) => (
+                <motion.li 
+                  key={link.name}
+                  initial={{ x: -20 }}
+                  animate={{ x: 0 }}
+                  transition={{ delay: 0.1, duration: 0.35 }}
+                >
+                  <Link 
+                    href={link.path} 
+                    onClick={() => setIsOpen(false)}
+                    className="text-lg font-light tracking-[0.1em] hover:text-gray-400 transition-colors"
                   >
                     {link.name}
                   </Link>
