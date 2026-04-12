@@ -22,7 +22,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
     <div className="max-w-7xl mx-auto px-6 pt-32 pb-24 space-y-20">
       <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="lg:sticky lg:top-32">
-          <div className="aspect-[4/5] bg-[#FAFAFA] relative flex items-center justify-center p-12">
+          <div className="aspect-[4/5] bg-[#1d1d1d] relative flex items-center justify-center p-12">
             <Image
               src={product.images[0]}
               alt={product.name}
@@ -75,7 +75,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
             <p className="text-sm uppercase tracking-[0.35em] text-gray-500 mb-2">Notes</p>
             <h2 className="text-3xl font-serif tracking-widest">Perfume notes</h2>
           </div>
-          <p className="max-w-xl text-sm text-gray-600">
+          <p className="max-w-xl text-sm text-white">
             Discover the opening, heart, and base notes that define the emotional arc of this fragrance.
           </p>
         </div>
@@ -113,7 +113,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
               href={`/fragrances/${item.id}`}
               className="group overflow-hidden rounded-[2rem] border border-gray-200 bg-[#FAFAFA] transition-transform hover:-translate-y-1"
             >
-              <div className="relative aspect-[4/5] overflow-hidden bg-white p-10">
+              <div className="relative aspect-[4/5] overflow-hidden bg-[#1d1d1d] p-10">
                 <Image
                   src={item.images[0]}
                   alt={item.name}

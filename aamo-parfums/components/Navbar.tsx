@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation"; // <-- IMPORT THIS
 import { AnimatePresence, motion } from "framer-motion";
 import { X, Menu, MapPin, Mail } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname(); // <-- GET CURRENT URL
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,11 +21,11 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Links for the overlay menu
+  // Links for the overlay menu and desktop nav
   const menuLinks = [
     { name: "HOME", path: "/" },
-    { name: "FRAGRANCES", path: "/fragrances" },
     { name: "ABOUT US", path: "/about" },
+    { name: "FRAGRANCES", path: "/fragrances" },
     { name: "WHERE TO FIND US", path: "/stores" },
     { name: "CONTACT US", path: "/contact" },
   ];
@@ -35,55 +37,35 @@ export default function Navbar() {
         <Link href="/" className="flex items-center">
           <picture>
             {!isScrolled && (
-              <source srcSet="/images/PNG/Logo-2-(Putih).png" media="(prefers-color-scheme: dark)" />
+              <source srcSet="/images/PNG/Logo-3-(Putih).png" media="(prefers-color-scheme: dark)" />
             )}
             <img
-              src="/images/PNG/Logo-2.png"
+              src="/images/PNG/Logo-3.png"
               alt="AAMO logo"
               className="h-8 w-auto object-contain"
             />
           </picture>
         </Link>
 
+        {/* --- UPDATED: Desktop Links with Active Underline --- */}
         <div className="flex items-center gap-10">
-          
-          <Link 
-            href="/"
-            className="text-sm tracking-widest hover:opacity-70 transition-opacity"
-          >
-            HOME
-          </Link>
-
-          <Link 
-            href="/about"
-            className="text-sm tracking-widest hover:opacity-70 transition-opacity"
-          >
-            ABOUT US
-          </Link>
-
-          <Link 
-            href="/fragrances"
-            className="text-sm tracking-widest hover:opacity-70 transition-opacity"
-          >
-            FRAGRANCES
-          </Link>
-          
-          <Link 
-            href="/stores"
-            className="text-sm tracking-widest hover:opacity-70 transition-opacity"
-          >
-            WHERE TO FIND US
-          </Link>
-          
-          <Link 
-            href="/contact"
-            className="text-sm tracking-widest hover:opacity-70 transition-opacity"
-          >
-            CONTACT US
-          </Link>
-          
-          
+          {menuLinks.map((link) => {
+            const isActive = pathname === link.path;
+            
+            return (
+              <Link 
+                key={link.name}
+                href={link.path}
+                className={`text-sm tracking-widest transition-all hover:opacity-70 pb-1 border-b ${
+                  isActive ? "border-current" : "border-transparent"
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
         </div>
+        {/* ---------------------------------------------------- */}
 
         <div className="flex items-center gap-6">
           <Link 
@@ -115,10 +97,10 @@ export default function Navbar() {
         <Link href="/" className="flex items-center">
           <picture>
             {!isScrolled && (
-              <source srcSet="/images/PNG/Logo-2-(Putih).png" media="(prefers-color-scheme: dark)" />
+              <source srcSet="/images/PNG/Logo-1-(Putih).png" media="(prefers-color-scheme: dark)" />
             )}
             <img
-              src="/images/PNG/Logo-2.png"
+              src="/images/PNG/Logo-1.png"
               alt="AAMO logo"
               className="h-6 w-auto object-contain"
             />

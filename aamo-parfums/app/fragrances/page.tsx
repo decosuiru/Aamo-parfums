@@ -12,34 +12,47 @@ export default function Fragrances() {
         <p className="text-sm tracking-[0.2em] text-gray-500 uppercase">Discover Our Collection</p>
       </div>
 
-      {/* Grid Layout for all products */}
-      {/* Mobile: 1 column, Tablet: 2 columns, Desktop: 3 columns */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16">
+      {/* 
+        UPDATED LAYOUT: 
+        Switched from 'grid' to 'flex flex-wrap justify-center'. 
+        This allows items to wrap to the next line automatically, 
+        and 'justify-center' forces any left-over items on the bottom row into the middle. 
+      */}
+      <div className="flex flex-wrap justify-center -mx-4 md:-mx-6">
         {products.map((product) => (
-          <Link href={`/fragrances/${product.id}`} key={product.id} className="group">
+          
+          /* 
+            WIDTH CONTROLS:
+            Mobile: w-full (1 per row)
+            Tablet: md:w-1/2 (2 per row)
+            Desktop: lg:w-1/3 (3 per row)
+          */
+          <div key={product.id} className="w-full md:w-1/2 lg:w-1/3 px-4 md:px-6 mb-16 flex justify-center">
             
-            {/* Image Container with Hover Effect */}
-            <div className="relative aspect-[4/5] bg-[#] overflow-hidden flex items-center justify-center">
-              {/* Note: Until you add real images to public/images, this might show a broken image icon. */}
-              <Image 
-                src={product.images[0]} 
-                alt={product.name}
-                fill
-                className="object-contain p-12 group-hover:scale-110 transition-transform duration-1000 ease-out"
-              />
-            </div>
+            <Link href={`/fragrances/${product.id}`} className="group flex flex-col items-center w-full">
+              
+              {/* Image Container with Hover Effect */}
+              <div className="relative aspect-[3/4] w-full scale-120 overflow-hidden flex items-center justify-center">
+                <Image 
+                  src={product.images[0]} 
+                  alt={product.name}
+                  fill
+                  className="object-contain group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
 
-            {/* Product Details below image */}
-            <div className="text-center">
-              <h3 className="text-sm font-semibold tracking-[0.2em] uppercase mb-2">
-                {product.name}
-              </h3>
-              <p className="text-xs text-gray-500 tracking-widest uppercase">
-                {product.type}
-              </p>
-            </div>
+              {/* Product Details below image */}
+              <div className="text-center w-full">
+                <h3 className="text-sm font-semibold tracking-[0.2em] uppercase mb-2">
+                  {product.name}
+                </h3>
+                <p className="text-xs text-gray-500 tracking-widest uppercase">
+                  {product.type}
+                </p>
+              </div>
 
-          </Link>
+            </Link>
+          </div>
         ))}
       </div>
 
