@@ -8,7 +8,7 @@ export default function Fragrances() {
       
       {/* Page Header */}
       <div className="text-center mb-20">
-        <h1 className="text-4xl md:text-5xl font-serif tracking-widest mb-4">FRAGRANCES</h1>
+        <h1 className="text-4xl md:text-5xl tracking-widest mb-4">FRAGRANCES</h1>
         <p className="text-sm tracking-[0.2em] text-gray-500 uppercase">Discover Our Collection</p>
       </div>
 
@@ -19,7 +19,7 @@ export default function Fragrances() {
           <Link href={`/fragrances/${product.id}`} key={product.id} className="group">
             
             {/* Image Container with Hover Effect */}
-            <div className="relative aspect-[4/5] bg-[#FAFAFA] mb-8 overflow-hidden flex items-center justify-center">
+            <div className="relative aspect-[4/5] bg-[#] overflow-hidden flex items-center justify-center">
               {/* Note: Until you add real images to public/images, this might show a broken image icon. */}
               <Image 
                 src={product.images[0]} 

@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative h-screen w-full bg-black flex items-center justify-center">
+      <section className="relative h-screen w-full bg-black flex items-center justify-left px-25">
         {/* Replace with an actual <Image> component when you add your assets */}
         <div className="absolute inset-0 opacity-70 bg-[url('/images/hero-slider-1.jpg')] bg-cover bg-center" />
         <div className="z-10 text-center text-white">
@@ -23,7 +23,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {featuredProducts.map((product) => (
             <Link href={`/fragrances/${product.id}`} key={product.id} className="group">
-              <div className="relative aspect-[3/4] bg-[#F5F5F5] mb-6 overflow-hidden flex items-center justify-center">
+              <div className="relative aspect-[3/4] scale-150 bg-[#] overflow-hidden flex items-center justify-center">
                  {/* Placeholder for Product Image */}
                 <Image 
                   src={product.images[0]} 

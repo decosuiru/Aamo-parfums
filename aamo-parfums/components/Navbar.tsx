@@ -46,24 +46,43 @@ export default function Navbar() {
         </Link>
 
         <div className="flex items-center gap-10">
-          <Link 
-            href="/fragrances"
-            className="text-sm tracking-widest hover:opacity-70 transition-opacity"
-          >
-            FRAGRANCES
-          </Link>
+          
           <Link 
             href="/"
             className="text-sm tracking-widest hover:opacity-70 transition-opacity"
           >
             HOME
           </Link>
+
           <Link 
             href="/about"
             className="text-sm tracking-widest hover:opacity-70 transition-opacity"
           >
             ABOUT US
           </Link>
+
+          <Link 
+            href="/fragrances"
+            className="text-sm tracking-widest hover:opacity-70 transition-opacity"
+          >
+            FRAGRANCES
+          </Link>
+          
+          <Link 
+            href="/stores"
+            className="text-sm tracking-widest hover:opacity-70 transition-opacity"
+          >
+            WHERE TO FIND US
+          </Link>
+          
+          <Link 
+            href="/contact"
+            className="text-sm tracking-widest hover:opacity-70 transition-opacity"
+          >
+            CONTACT US
+          </Link>
+          
+          
         </div>
 
         <div className="flex items-center gap-6">
