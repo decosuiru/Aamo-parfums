@@ -28,7 +28,7 @@ export const products: Product[] = [
       heart: "Juniper Bay, Ginger, Nutmeg, Geranium",
       base: "Patchouli, Vetiver, Cedarwood, Moss"
     },
-    images: ["/images/PNG/emit-light.png", "/images/emit-light-2.jpg"]
+    images: ["/images/PNG/emit-light.png", "/images/Foto1/P-17.jpg", "/images/Foto1/P-19.jpg"]
   },
   {
     id: "glace-amor",
@@ -42,8 +42,7 @@ export const products: Product[] = [
       heart: "Rose, White Flowers, Heliotrope Flower",
       base: "Vanilla Cream, Edible Notes, Powdery Notes, Patchouli, Tonka Bean"
     },
-    images: ["/images/PNG/glace-amor.png", "/images/glace-amor-2.jpg"]
-  },
+    images: ["/images/PNG/glace-amor.png", "/images/Foto1/P-24.jpg", "/images/Foto1/P-26.jpg","/images/Foto1/P-27.jpg","/images/Foto1/P-28.jpg","/images/Foto1/P-29.jpg"] },
   {
     id: "cherrynity",
     name: "CHERRYNITY",
@@ -55,7 +54,7 @@ export const products: Product[] = [
       heart: "Leather, Olive, Osmanthus, Apricot, Nutmeg, Iris",
       base: "Smoked Wood, Nagarmotha, Incense, Amber, Vanilla, Oak Moss"
     },
-    images: ["/images/PNG/cherrynity.png"],
+    images: ["/images/PNG/cherrynity.png", "/images/Foto1/P-30.jpg", "/images/Foto1/P-34.jpg"],
     type: "Eau de Parfum"
   },
   {
