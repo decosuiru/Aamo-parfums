@@ -8,8 +8,8 @@ export default function Footer() {
         
         {/* Brand Column */}
         <div className="flex flex-col">
-          <Link href="/" className="text-3xl font-serif tracking-widest mb-6">
-            AAMO
+          <Link href="/" >
+            <img src="/images/PNG/Logo-1-(Putih).png" alt="AAMO Parfums Logo" className="w-auto mb-4 object-contain" />
           </Link>
           <p className="text-xs text-gray-400 tracking-widest uppercase leading-relaxed max-w-xs">
             Inspired by life’s journey, every scent becomes a part of your story.
@@ -20,10 +20,10 @@ export default function Footer() {
         <div className="flex flex-col">
           <h4 className="text-sm tracking-[0.2em] uppercase mb-6 font-semibold">Available On</h4>
           <ul className="space-y-4 text-xs tracking-widest uppercase text-gray-400">
-            <li><a href="https://shopee.co.id/aamoparfums" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><ShoppingBag size={14}/> Shopee</a></li>
-            <li><a href="https://www.tokopedia.com/aamo-parfums" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><ShoppingBag size={14}/> Tokopedia</a></li>
-            <li><a href="https://www.lazada.co.id/shop/aamo-parfume" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><ShoppingBag size={14}/> Lazada</a></li>
-            <li><a href="https://www.tiktok.com/@aamoparfums" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><ShoppingBag size={14}/> Tiktok</a></li>
+            <li><a href="https://shopee.co.id/aamoparfums" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><img src="/images/PNG/shopee.png" alt="Shopee" width={14} height={14} /> Shopee</a></li>
+            <li><a href="https://www.tokopedia.com/aamo-parfums" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><img src="/images/PNG/tokopedia.png" alt="Tokopedia" width={14} height={14} /> Tokopedia</a></li>
+            <li><a href="https://www.lazada.co.id/shop/aamo-parfume" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><img src="/images/PNG/lazada.png" alt="Lazada" width={14} height={14} /> Lazada</a></li>
+            <li><a href="https://www.tiktok.com/@aamoparfums" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><img src="/images/PNG/tiktok.png" alt="Tiktok" width={14} height={14} /> Tiktok</a></li>
           </ul>
         </div>
 
@@ -47,8 +47,11 @@ export default function Footer() {
         {/* Social Media */}
         <div className="flex flex-col">
           <h4 className="text-sm tracking-[0.2em] uppercase mb-6 font-semibold">Social Media</h4>
-          <a href="https://www.instagram.com/aamoparfums/" target="_blank" className="text-xs text-gray-400 tracking-widest uppercase hover:text-white transition-colors flex items-center gap-2">
-            <Navigation size={14} /> Instagram
+          <a href="https://www.instagram.com/aamoparfums/" target="_blank" >
+            <img src="/images/PNG/instagram.png" alt="Instagram" width={30} height={20} /> 
+          </a>
+          <a href="https://www.tiktok.com/@aamoparfums" target="_blank" >
+            <img src="/images/PNG/tiktok.png" alt="Tiktok" width={30} height={20} style={{ marginTop: '1rem' }} /> 
           </a>
         </div>
 

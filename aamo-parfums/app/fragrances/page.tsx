@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { products } from "@/lib/products";
+import { ShoppingBag, Navigation, Mail, MapPin } from "lucide-react"; 
 
 export default function Fragrances() {
   return (
@@ -45,7 +46,12 @@ export default function Fragrances() {
 
             </Link>
           </div>
+
+          
+
         ))}
+
+        
       </div>
     </div>
   );

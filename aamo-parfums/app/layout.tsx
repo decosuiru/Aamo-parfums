@@ -1,6 +1,9 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import localFont from "next/font/local";
+import Footer from "@/components/Footer";
+
+
 
 // 1. Load TT Norms (Sans-Serif)
 const ttNorms = localFont({
@@ -30,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="min-h-screen">
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );

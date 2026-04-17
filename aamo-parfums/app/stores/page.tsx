@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { MapPin, ShoppingBag, Store, Navigation } from "lucide-react"; // Guaranteed correct imports
+import Link from "next/link";
+import { MapPin, ShoppingBag, Store, Mail, Navigation } from "lucide-react"; // Guaranteed correct imports
 
 const offlineStores = [
   {
