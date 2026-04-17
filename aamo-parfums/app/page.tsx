@@ -105,6 +105,7 @@ export default function Home() {
                   alt={slide.title}
                   fill
                   priority={index === 0} 
+                  sizes="100vw"
                   className="object-cover object-center" 
                 />
 
@@ -127,6 +128,7 @@ export default function Home() {
                         src={slide.logoSrc}
                         alt={slide.title}
                         fill
+                        sizes="100vw"
                         className={`object-contain ${slide.align === 'right' ? 'object-right' : 'object-left'}`}
                       />
                     </motion.div>
@@ -163,7 +165,7 @@ export default function Home() {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-2 h-2 rounded-full transition-all duration-500 ${
-                index === currentSlide ? "bg-white scale-125" : "bg-white/40"
+                index === currentSlide ? "bg-white scale-120" : "bg-white/40"
               }`}
             />
           ))}
@@ -171,31 +173,39 @@ export default function Home() {
       </section>
 
       {/* FEATURED PRODUCTS SECTION */}
-      <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <section className="max-w-7xl mx-auto px-4 md:px-6 py-24">
+        
+        {/* FIX: grid-cols-2 on mobile, reduced gap for mobile to fit nicely */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-12">
           {featuredProducts.map((product) => (
             <Link href={`/fragrances/${product.id}`} key={product.id} className="group flex flex-col items-center">
               
-              <div className="relative aspect-[3/4] w-full max-w-[280px] mb-0 overflow-hidden flex items-center justify-center">
+              <div className="relative aspect-[3/4] w-full max-w-[280px] mb-4 md:mb-6 overflow-hidden flex items-center justify-center">
                 <Image 
                   src={product.images[0]} 
                   alt={product.name}
                   fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
                   className="object-contain group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
               
-              <h3 className="text-center text-sm font-medium tracking-widest">{product.name}</h3>
+              <h3 className="text-center text-xs md:text-sm font-medium tracking-widest">{product.name}</h3>
             </Link>
           ))}
         </div>
 
-        <div className="mt-20 flex justify-center">
+        {/* BRANDING LINE & DISCOVER BUTTON */}
+        <div className="mt-20 flex flex-col items-center justify-center gap-10">
+          
+          {/* UPDATED: Standalone image removed, replaced with CSS Background Layer */}
+          <div className="w-32 h-6 bg-[url('/images/PNG/Line/line1.png')] bg-contain bg-center scale-200 bg-no-repeat bg-left my-8"></div>
+          
           <Link 
             href="/fragrances" 
-            className="border-b border-black pb-2 text-sm tracking-[0.2em] hover:text-gray-500 hover:border-gray-500 transition-all"
+            className="border-b border-black pb-2 text-xs md:text-sm tracking-[0.2em] hover:text-gray-500 hover:border-gray-500 transition-all uppercase"
           >
-            DISCOVER COLLECTION
+            Discover Collection
           </Link>
         </div>
       </section>
