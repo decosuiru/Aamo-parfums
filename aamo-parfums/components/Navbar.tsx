@@ -26,7 +26,7 @@ export default function Navbar() {
     { name: "HOME", path: "/" },
     { name: "ABOUT US", path: "/about" },
     { name: "FRAGRANCES", path: "/fragrances" },
-    { name: "WHERE TO FIND US", path: "/stores" },
+    { name: "FIND US", path: "/stores" },
     { name: "CONTACT US", path: "/contact" },
   ];
 
@@ -71,7 +71,7 @@ export default function Navbar() {
           <Link 
             href="/stores"
             className="hover:opacity-70 transition-opacity"
-            title="Where to find us"
+            title="find us"
           >
             <MapPin size={20} strokeWidth={1} />
           </Link>
@@ -97,12 +97,12 @@ export default function Navbar() {
         <Link href="/" className="flex items-center">
           <picture>
             {!isScrolled && (
-              <source srcSet="/images/PNG/Logo-1-(Putih).png" media="(prefers-color-scheme: dark)" />
+              <source srcSet="/images/PNG/Logo-2-(Putih).png" media="(prefers-color-scheme: dark)" />
             )}
             <img
-              src="/images/PNG/Logo-1.png"
+              src="/images/PNG/Logo-2.png"
               alt="AAMO logo"
-              className="h-6 w-auto object-contain"
+              className="h-7 w-auto object-contain"
             />
           </picture>
         </Link>

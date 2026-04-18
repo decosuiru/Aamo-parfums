@@ -9,8 +9,8 @@ module.exports = {
     extend: {
       fontFamily: {
         // This links the custom luxury fonts to Tailwind
-        sans: ["var(--font-ttnorms)", "sans-serif"],
-        serif: ["var(--font-ivy)", "serif"], 
+        sans: ["TT Norms", "sans-serif"],
+        serif: ["Ivy Ora Display", "serif"], 
       },
     },
   },

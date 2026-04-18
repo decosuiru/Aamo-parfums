@@ -26,7 +26,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
       {/* =========================================
           BACKGROUND LINE WATERMARKS (Scaled to fit)
           ========================================= */}
-      <div className="absolute inset-0 z-0 pointer-events-none flex flex-col justify-around opacity-10">
+      <div className="absolute inset-0 z-0 pointer-events-none flex flex-col justify-around opacity-70">
         <Image src="/images/PNG/Line/line1white.png" alt="line" width={2000} height={200} className="w-full h-auto object-cover" />
         <Image src="/images/PNG/Line/line4white.png" alt="line" width={2000} height={200} className="w-full h-auto object-cover" />
         <Image src="/images/PNG/Line/line7white.png" alt="line" width={2000} height={200} className="w-full h-auto object-cover" />
@@ -56,20 +56,13 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
         <div className="w-full lg:w-1/2 px-8 md:px-16 lg:px-24 py-24 lg:py-32 flex flex-col justify-center bg-[#1d1d1d]/80 backdrop-blur-sm">
           <div className="max-w-xl mx-auto lg:mx-0 w-full">
             
-            {/* Breadcrumbs */}
-            <div className="text-[10px] tracking-[0.3em] uppercase text-gray-400 mb-10 flex items-center gap-2">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <span>/</span>
-              <Link href="/fragrances" className="hover:text-white transition-colors">Fragrances</Link>
-              <span>/</span>
-              <span className="text-white">{product.name}</span>
-            </div>
+            
 
             <p className="text-xs tracking-[0.2em] uppercase text-gray-400 mb-4 font-semibold">
               {product.olfactive}
             </p>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif italic mb-4 text-white leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl mb-4 text-white leading-tight">
               {product.name}
             </h1>
             
@@ -77,7 +70,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
               {product.type} <span className="mx-2 text-gray-600">|</span> {product.release}
             </p>
 
-            <div className="text-sm text-gray-300 leading-loose mb-16 font-light">
+            <div className="text-sm font- text-gray-300 font-serif italic leading-loose mb-16 font-light">
               <p>{product.description}</p>
             </div>
 
@@ -118,7 +111,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
         <Image src={backgroundPath} alt={`Mood of ${product.name}`} fill sizes="100vw" className="object-cover object-center" />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative z-10 text-center px-6 flex flex-col items-center">
-          <h2 className="text-4xl md:text-6xl font-serif italic text-white mb-6 drop-shadow-lg">
+          <h2 className="text-4xl md:text-6xl text-white mb-6 drop-shadow-lg">
             The Essence of {product.name}
           </h2>
           <p className="text-white/90 tracking-[0.2em] text-xs md:text-sm uppercase font-medium">
@@ -149,9 +142,9 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
           SECTION 3: YOU MAY ALSO LIKE
           ========================================= */}
       <section className="max-w-7xl mx-auto px-6 py-24 border-t border-white/10 z-10 relative">
-        <h2 className="text-center text-3xl font-serif italic mb-16 text-white tracking-widest">You May Also Like</h2>
+        <h2 className="text-center text-3xl mb-16 text-white tracking-widest">You May Also Like</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-12">
           {recommendedProducts.map((rec) => (
             <Link href={`/fragrances/${rec.id}`} key={rec.id} className="group flex flex-col items-center">
               <div className="relative aspect-[3/4] w-full bg-[#151515] mb-6 overflow-hidden flex items-center justify-center">

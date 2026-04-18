@@ -1,6 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { MapPin, ShoppingBag, Store, Mail, Navigation } from "lucide-react"; // Guaranteed correct imports
+import { MapPin, ShoppingBag, Store, Navigation, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const offlineStores = [
   {
@@ -56,11 +59,20 @@ const offlineStores = [
 ];
 
 export default function Stores() {
+  // State to track which city accordion is currently open. 
+  // We set "Jakarta" as the default open tab.
+  const [openCity, setOpenCity] = useState<string | null>("Jakarta");
+
+  const toggleCity = (city: string) => {
+    // If clicking the already open city, close it. Otherwise, open the new one.
+    setOpenCity(openCity === city ? null : city);
+  };
+
   return (
     <div className="w-full bg-[#1d1d1d] text-white min-h-screen relative overflow-hidden">
       
-      {/* Background Line Watermark (Fits Screen) */}
-      <div className="absolute inset-0 w-full h-full bg-[url('/images/PNG/Line/line4white.png')] bg-cover bg-center opacity-10 pointer-events-none"></div>
+      {/* Background Line Watermark */}
+      <div className="absolute inset-0 w-full h-full bg-[url('/images/PNG/Line/line4white.png')] bg-cover bg-center opacity-10 pointer-events-none fixed"></div>
 
       <div className="max-w-7xl mx-auto px-6 pt-40 pb-24 relative z-10">
         
@@ -76,7 +88,7 @@ export default function Stores() {
           <div className="w-full md:w-1/3">
             <div className="md:sticky md:top-32 space-y-12">
               
-              <div className="bg-white/5 p-8 border border-white/10 rounded-sm">
+              <div className="bg-white/5 p-8 border border-white/10 rounded-sm hover:bg-white/10 transition-colors duration-500">
                 <h3 className="text-sm tracking-[0.2em] uppercase font-bold mb-6 flex items-center gap-3 border-b border-white/10 pb-4">
                   <Store size={18} /> Head Office
                 </h3>
@@ -95,45 +107,84 @@ export default function Stores() {
                   <ShoppingBag size={18} /> Online Boutiques
                 </h3>
                 <ul className="space-y-4 text-xs tracking-widest uppercase text-gray-400">
-                  <li><a href="https://shopee.co.id/aamoparfums" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><Navigation size={12}/> Shopee</a></li>
-                  <li><a href="https://www.tokopedia.com/aamo-parfums" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><Navigation size={12}/> Tokopedia</a></li>
-                  <li><a href="https://www.lazada.co.id/shop/aamo-parfume" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><Navigation size={12}/> Lazada</a></li>
-                  <li><a href="https://www.tiktok.com/@aamoparfums" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><Navigation size={12}/> Tiktok</a></li>
+                  <li><a href="https://shopee.co.id/aamoparfums" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><img src="/images/PNG/shopee.png" alt="Shopee" className="h-4 w-auto" /> Shopee</a></li>
+                  <li><a href="https://www.tokopedia.com/aamo-parfums" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><img src="/images/PNG/tokopedia.png" alt="Tokopedia" className="h-4 w-auto" /> Tokopedia</a></li>
+                  <li><a href="https://www.lazada.co.id/shop/aamo-parfume" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><img src="/images/PNG/lazada.png" alt="Lazada" className="h-4 w-auto" /> Lazada</a></li>
+                  <li><a href="https://www.tiktok.com/@aamoparfums" target="_blank" className="hover:text-white transition-colors flex items-center gap-2"><img src="/images/PNG/tiktok.png" alt="Tiktok" className="h-4 w-auto" /> Tiktok</a></li>
                 </ul>
               </div>
 
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Offline Boutiques */}
+          {/* RIGHT COLUMN: Offline Boutiques (Expandable Accordion) */}
           <div className="w-full md:w-2/3">
-            <h3 className="text-sm tracking-[0.2em] uppercase font-bold mb-10 border-b border-white/10 pb-4 text-white">
+            <h3 className="text-sm tracking-[0.2em] uppercase font-bold mb-8 border-b border-white/10 pb-4 text-white">
               Offline Boutiques
             </h3>
             
-            <div className="space-y-16">
-              {offlineStores.map((cityGroup) => (
-                <div key={cityGroup.city}>
-                  <h2 className="text-2xl font-serif italic mb-8 text-white/90 flex items-center gap-3">
-                    <MapPin size={24} className="text-white/50" /> {cityGroup.city}
-                  </h2>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
-                    {cityGroup.stores.map((store, idx) => (
-                      <div key={idx} className="flex flex-col group">
-                        <h4 className="text-sm font-semibold tracking-widest uppercase mb-2 text-white/90 group-hover:text-white transition-colors">{store.name}</h4>
-                        {store.location && <p className="text-[11px] tracking-widest uppercase font-medium text-gray-500 mb-2">{store.location}</p>}
-                        <p className="text-xs text-gray-400 leading-relaxed font-light">{store.address}</p>
-                      </div>
-                    ))}
-                  </div>
+            <div className="flex flex-col">
+              {offlineStores.map((cityGroup) => {
+                const isOpen = openCity === cityGroup.city;
 
-                  <div className="mt-16 mb-8 flex justify-center w-full">
-                    <div className="w-16 h-2 bg-[url('/images/PNG/Line/line8white.png')] bg-contain bg-center bg-no-repeat opacity-50"></div>
+                return (
+                  <div key={cityGroup.city} className="border-b border-white/10">
+                    
+                    {/* Accordion Header (Clickable) */}
+                    <button
+                      onClick={() => toggleCity(cityGroup.city)}
+                      className="w-full flex justify-between items-center py-6 focus:outline-none group"
+                    >
+                      <h2 className="text-xl md:text-2xl font-serif italic text-white/80 group-hover:text-white transition-colors flex items-center gap-4">
+                        <MapPin size={20} className={`${isOpen ? 'text-white' : 'text-white/30'} transition-colors`} /> 
+                        {cityGroup.city}
+                      </h2>
+                      
+                      {/* Animated Chevron Arrow */}
+                      <motion.div
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+                      >
+                        <ChevronDown size={20} className="text-gray-500 group-hover:text-white transition-colors" />
+                      </motion.div>
+                    </button>
+                    
+                    {/* Accordion Content (Animated Height) */}
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }} // Luxury easing curve
+                          className="overflow-hidden"
+                        >
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10 pb-10 pt-4">
+                            {cityGroup.stores.map((store, idx) => (
+                              <div key={idx} className="flex flex-col group/store">
+                                <h4 className="text-sm font-semibold tracking-widest uppercase mb-2 text-white/90 group-hover/store:text-white transition-colors">
+                                  {store.name}
+                                </h4>
+                                {store.location && (
+                                  <p className="text-[11px] tracking-widest uppercase font-medium text-gray-500 mb-2">
+                                    {store.location}
+                                  </p>
+                                )}
+                                <p className="text-xs text-gray-400 leading-relaxed font-light">
+                                  {store.address}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
+
           </div>
 
         </div>
