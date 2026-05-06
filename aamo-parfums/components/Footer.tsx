@@ -6,6 +6,18 @@ export default function Footer() {
   return (
     <footer className="bg-[#111111] text-white pt-20 pb-10 border-t border-white/10 relative mt-20">
       
+       {/* 
+        LEFT-SIDE FADING PATTERN (From Image 1 Reference)
+        Anchored to the left, covers 60% of the width, smoothly fades to transparent on the right.
+      */}
+      <div 
+        className="absolute inset-y-0 left-0 w-full md:w-[60%] bg-[url('/images/PNG/Line/line1white.png')] bg-cover bg-left bg-no-repeat opacity-40 pointer-events-none z-0"
+        style={{
+          WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 100%)',
+          maskImage: 'linear-gradient(to right, black 0%, transparent 100%)'
+        }}
+      ></div>
+      
       <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
         
         {/* Brand Column */}
